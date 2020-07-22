@@ -45,7 +45,7 @@ const AuthProvider: React.FC = ({ children }) => {
     setData({ token, user })
   }, [])
 
-  const signOut = useCallback(() => {
+  const SignOut = useCallback(() => {
     localStorage.removeItem('@GoBarber:token')
     localStorage.removeItem('@GoBarber:user')
 
@@ -53,7 +53,7 @@ const AuthProvider: React.FC = ({ children }) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user: data.user, SignIn }}>
+    <AuthContext.Provider value={{ user: data.user, SignIn, SignOut }}>
       {children}
     </AuthContext.Provider>
   )
@@ -63,10 +63,10 @@ function useAuth(): AuthContextData {
   const context = useContext(AuthContext)
 
   if (!context) {
-    throw new Error('useAuth must be user within an AuthProvider')
+    throw new Error('useAuth must be used within an AuthProvider')
   }
 
   return context
 }
 
-export { AuthProvider, useAuth, signOut }
+export { AuthProvider, useAuth }
