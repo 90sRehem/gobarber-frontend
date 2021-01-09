@@ -1,1 +1,2 @@
 # gobarber-frontend
+Em construção
